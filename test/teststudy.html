@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Abroad</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="js/include.js" defer></script>
+
+    <style>
+    .study-hero-container {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        max-width: 1200px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        border: 1px solid #ddd;
+    }
+
+    .study-hero-image {
+        flex: 1;
+    }
+
+    .study-hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .study-hero-form {
+        flex: 1;
+        padding: 40px;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .study-hero-form h2 {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+
+    .study-hero-form p {
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #444;
+    }
+
+    .study-hero-form form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .study-hero-form input,
+    .study-hero-form select {
+        padding: 12px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+    }
+
+    .input-row {
+        display: flex;
+        gap: 15px;
+    }
+
+    .input-row input,
+    .input-row select {
+        flex: 1;
+    }
+
+    .terms-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #333;
+    margin-top: 10px;
+    }
+
+    .terms-row input[type="checkbox"] {
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    }
+
+    .terms-row a {
+    color: #007bff;
+    text-decoration: none;
+    }
+
+    .terms-row a:hover {
+    text-decoration: underline;
+    }
+
+
+    .submit-btn {
+        display: block;
+        margin: 20px auto 0;
+        background-color: #e84118;
+        color: white;
+        border: none;
+        padding: 12px 40px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+    }
+
+    .study-benefits-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1125px;
+  margin: 60px auto;
+  padding: 40px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+  background-color: #fff;
+        
+}
+
+.study-benefits-image {
+  flex: 1;
+}
+
+.study-benefits-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.study-benefits-content {
+  flex: 1;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.study-benefits-content h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.benefit-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: #fafafa;
+  border: 1px solid #eee;
+  padding: 40px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.benefit-card img {
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+}
+
+.benefit-card-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.benefit-card-text h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.benefit-card-text p {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.scroll-slider-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+.scroll-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+.country-card {
+  flex: 0 0 250px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  scroll-snap-align: start;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+.country-card:hover {
+  transform: translateY(-5px);
+}
+.country-card img {
+  width: 60px;
+  height: auto;
+  margin-bottom: 10px;
+}
+.country-card h3 {
+  margin: 10px 0 5px;
+}
+.country-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #e84118;
+  font-weight: 500;
+  text-decoration: none;
+}
+.destination-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.faq-container {
+    max-width: 1125px;
+    margin: 60px auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .faq-container h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid #eee;
+  }
+
+  .accordion-label {
+    font-weight: 600;
+    cursor: pointer;
+    padding: 15px;
+    display: block;
+    transition: background 0.3s ease;
+    position: relative;
+  }
+
+  .accordion-label:hover {
+    background-color: #f7f7f7;
+  }
+
+  .accordion-label::after {
+    content: "+";
+    position: absolute;
+    right: 20px;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"]:checked + .accordion-label::after {
+    content: "-";
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  input[type="checkbox"]:checked ~ .accordion-content {
+    max-height: 200px;
+    padding: 15px;
+  }
+
+
+
+    </style>
+</head>
+<body>
+ <!-- Header Include -->
+  <div id="header-placeholder" data-include="partials/header.html"></div>
+    <section class="study-hero-container">
+        <div class="study-hero-image">
+            <img src="images/study2.jpg" alt="Study Abroad" />
+        </div>
+        <div class="study-hero-form">
+            <h2>Your Global Education Journey Starts Here</h2>
+            <p>Explore top universities, get expert guidance, and study in your dream country.</p>
+           <form action="https://formsubmit.co/queries@mythosconsulting.org" method="POST">
+              <!-- Hidden Fields -->
+              <input type="hidden" name="_subject" value="New Free Assessment Submission">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_autoresponse" value="Thank you for reaching out to Mythos. We will contact you shortly.">
+              <input type="hidden" name="_next" value="javascript:void(0);">
+
+              <!-- Input Fields -->
+              <div class="input-row">
+                <input type="text" name="First Name" placeholder="First Name" required />
+                <input type="text" name="Last Name" placeholder="Last Name" required />
+              </div>
+
+              <div class="input-row">
+                <input type="email" name="Email" placeholder="Email Address" required />
+              </div>
+
+              <div class="input-row">
+                <select name="Country Code" required>
+                  <option value="IND">IND (+91)</option>
+                </select>
+                <input type="tel" name="Phone Number" placeholder="Phone Number" required />
+              </div>
+
+              <select name="State" required>
+                <option value="">Select State</option>
+                <option>Andhra Pradesh</option>
+                <option>Arunachal Pradesh</option>
+                <option>Assam</option>
+                <option>Bihar</option>
+                <option>Chhattisgarh</option>
+                <option>Goa</option>
+                <option>Gujarat</option>
+                <option>Haryana</option>
+                <option>Himachal Pradesh</option>
+                <option>Jharkhand</option>
+                <option>Karnataka</option>
+                <option>Kerala</option>
+                <option>Madhya Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Manipur</option>
+                <option>Meghalaya</option>
+                <option>Mizoram</option>
+                <option>Nagaland</option>
+                <option>Odisha</option>
+                <option>Punjab</option>
+                <option>Rajasthan</option>
+                <option>Sikkim</option>
+                <option>Tamil Nadu</option>
+                <option>Telangana</option>
+                <option>Tripura</option>
+                <option>Uttar Pradesh</option>
+                <option>Uttarakhand</option>
+                <option>West Bengal</option>
+                <option>Andaman and Nicobar Islands</option>
+                <option>Chandigarh</option>
+                <option>Dadra and Nagar Haveli and Daman and Diu</option>
+                <option>Delhi</option>
+                <option>Lakshadweep</option>
+                <option>Puducherry</option>
+                <option>Ladakh</option>
+                <option>Jammu and Kashmir</option>
+              </select>
+              <button type="submit" class="submit-btn">Start Free Assessment</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="study-benefits-container">
+        <div class="study-benefits-image">
+            <img src="images/benefit.jpg" alt="Study Abroad Benefits" />
+        </div>
+        <div class="study-benefits-content">
+            <h2>Why Study Abroad with Mythos?</h2>
+            <a href="https://wa.me/07776607284?text=Hi%2C%20I%20need%20guidance%20on%20Personalized%20Guidance" target="_blank" class="benefit-card">
+                <img src="https://img.icons8.com/color/48/graduation-cap.png" alt="Guidance" />
+                <div class="benefit-card-text">
+                    <h3>Personalized Guidance</h3>
+                    <p>Get expert advice on course & university selection that suits your goals.</p>
+                </div>
+            </a>
+
+            <a href="https://wa.me/07776607284?text=Hi%2C%20I%20need%20End-to-End%20Support%20for%20studying%20abroad" target="_blank" class="benefit-card">
+                <img src="https://img.icons8.com/color/48/contract.png" alt="Support" />
+                <div class="benefit-card-text">
+                    <h3>End-to-End Support</h3>
+                    <p>From applications to documentation, we’re with you at every step.</p>
+                </div>
+            </a>
+
+            <a href="https://wa.me/07776607284?text=Hi%2C%20please%20assist%20me%20with%20Visa%20Counseling" target="_blank" class="benefit-card">
+                <img src="https://img.icons8.com/color/48/passport.png" alt="Visa" />
+                <div class="benefit-card-text">
+                    <h3>Visa Counseling</h3>
+                    <p>Our certified experts guide you through the visa process with ease.</p>
+                </div>
+            </a>
+
+            <a href="https://wa.me/07776607284?text=Hi%2C%20I'd%20like%20Scholarship%20Assistance" target="_blank" class="benefit-card">
+                <img src="https://img.icons8.com/color/48/graduation-cap.png" alt="Scholarship" />
+                <div class="benefit-card-text">
+                    <h3>Scholarship Assistance</h3>
+                    <p>We help identify funding & scholarship options based on your profile.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Horizontal Scroll Cards (Slider) Preview -->
+    <section class="scroll-slider-container">
+        <h2 class="section-title">Top Study Destinations</h2>
+        <div class="scroll-slider">
+            <div class="country-card">
+                <img src="https://flagcdn.com/gb.svg" alt="UK Flag" />
+                <h3>United Kingdom</h3>
+                <p>World-class universities and 2-year post-study work visa.</p>
+                <a href="uk.html">Explore UK</a>
+            </div>
+            <div class="country-card">
+                <img src="https://flagcdn.com/us.svg" alt="USA Flag">
+                <h3>USA</h3>
+                <p>Top global universities and research opportunities.</p>
+                <a href="usa.html">Explore USA</a>
+            </div>
+            <div class="country-card">
+                <img src="https://flagcdn.com/ca.svg" alt="Canada Flag">
+                <h3>Canada</h3>
+                <p>Affordable tuition and 3-year PGWP.</p>
+                <a href="canada.html">Explore Canada</a>
+            </div>
+            <div class="country-card">
+                <img src="https://flagcdn.com/au.svg" alt="Australia Flag">
+                <h3>Australia</h3>
+                <p>Popular among international students with flexible PR paths.</p>
+                <a href="australia.html">Explore Australia</a>
+            </div>
+            <div class="country-card">
+                <img src="https://flagcdn.com/de.svg" alt="Germany Flag">
+                <h3>Germany</h3>
+                <p>Free education in public universities with strong job prospects.</p>
+                <a href="germany.html">Explore Germany</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-container">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="accordion-item">
+            <input type="checkbox" id="faq1">
+            <label class="accordion-label" for="faq1">What is the benefit of studying abroad?</label>
+            <div class="accordion-content">
+            Studying abroad offers global exposure, access to world-class education, and better job opportunities internationally.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <input type="checkbox" id="faq2">
+            <label class="accordion-label" for="faq2">Do I need to take IELTS or any other language test?</label>
+            <div class="accordion-content">
+            Most countries require proof of English proficiency through IELTS, TOEFL, or equivalent exams unless exemptions apply.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <input type="checkbox" id="faq3">
+            <label class="accordion-label" for="faq3">Can I get scholarships to study abroad?</label>
+            <div class="accordion-content">
+            Yes, many institutions and governments offer merit-based or need-based scholarships for international students.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <input type="checkbox" id="faq4">
+            <label class="accordion-label" for="faq4">Will I be able to work while studying abroad?</label>
+            <div class="accordion-content">
+            Yes, most countries allow part-time work for international students, typically up to 20 hours per week during term time.
+            </div>
+        </div>
+    </section>
+<!-- Reusable Modals -->
+    <div id="signup-modal-placeholder" data-include="partials/signup-modal.html"></div>
+    <div id="login-modal-placeholder" data-include="partials/login-modal.html"></div>
+    <div id="footer-placeholder" data-include="partials/footer.html"></div>
+
+  <script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form)
+      }).then(() => {
+        alert("✅ Successfully Registered!");
+        form.reset();
+      });
+    });
+ </script>
+
+</body>

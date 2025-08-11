@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Eligibility Check</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="js/include.js" defer></script>
+  
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #111;
+    }
+    .wizard-step {
+      max-width: 1200px;
+      margin: 40px auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      display: flex;
+      padding: 30px;
+      gap: 30px;
+    }
+    .wizard-left { flex: 2; }
+    .wizard-right {
+      flex: 1;
+      border: 1px solid #eee;
+      padding: 30px;
+      background: #fff;
+      text-align: center;
+      border-radius: 8px;
+    }
+    .wizard-right img.flag-icon {
+      width: 40px;
+      height: 26px;
+      margin-bottom: 10px;
+    }
+    .score-bubble {
+      margin: 16px auto;
+      background: #e6391f;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .heading-section {
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    h1 { font-size: 28px; font-weight: 600; margin: 8px 0; }
+    h3 { font-size: 18px; margin: 0; }
+    .step-indicator { display: flex; gap: 8px; margin-top: 10px; }
+    .step-indicator span {
+      width: 24px;
+      height: 6px;
+      background: #ddd;
+      border-radius: 4px;
+    }
+    .step-indicator span.active { background-color: #e6381f; width: 40px; }
+    .question-block { margin-bottom: 30px; }
+    .question-title { font-weight: 500; font-size: 16px; margin-bottom: 10px; }
+    .option-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+    .option-buttons button {
+      padding: 10px 16px;
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .option-buttons img {
+      width: 20px;
+      height: 14px;
+    }
+    .btn-selected { background-color: #000; color: #fff; border: none; }
+    .btn-next {
+      background-color: #e6391f;
+      color: #fff;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .final-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .form-row select,
+    .form-row input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      flex: 1;
+      min-width: 150px;
+    }
+    .checkbox-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .checkbox-row label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .submit-btn {
+      background: #e6391f;
+      color: white;
+      padding: 10px 30px;
+      border: none;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+    .accordion-item {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 10px;
+    }
+    .accordion-btn {
+      background: #fff;
+      border: none;
+      outline: none;
+      width: 100%;
+      text-align: left;
+      padding: 18px 20px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .accordion-btn:hover {
+      background-color: #f9f9f9;
+    }
+    .accordion-content {
+      display: none;
+      padding: 0 20px 15px 20px;
+      font-size: 14px;
+      color: #444;
+    }
+    .accordion-btn.active + .accordion-content {
+      display: block;
+    }
+    .accordion-btn .icon {
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+    .accordion-btn.active .icon {
+      transform: rotate(45deg);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header Include -->
+  <div id="header-placeholder" data-include="partials/header.html"></div>
+
+<!-- Free Eligibility Check Wizard -->
+<section class="wizard-step">
+      <div class="wizard-left">
+        <!-- Heading -->
+        <div class="heading-section">
+          <h3>Hi,</h3>
+          <h1>Welcome to Your Free and Quick Wizard</h1>
+          <span class="badge" id="step-badge">Step 1 of 6</span>
+          <div class="step-indicator">
+            <span class="active"></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Step 1: Country Preference -->
+        <div id="step1">
+          <div class="question-block">
+            <p class="question-title">You Want to Get Yourself Evaluated for</p>
+            <button class="btn-selected" disabled>Immigration</button>
+          </div>
+          <div class="question-block">
+            <p class="question-title">Your Country Preference</p>
+            <div class="option-buttons">
+              <button onclick="selectCountry(this, 5, 'images/uk.png', 'United Kingdom')"><img src="images/uk.png"> UK</button>
+              <button onclick="selectCountry(this, 4, 'images/ir.png', 'Ireland')"><img src="images/ir.png"> Ireland</button>
+              <button onclick="selectCountry(this, 4, 'images/net.jpg', 'Netherlands')"><img src="images/net.jpg"> Netherlands</button>
+              <button onclick="selectCountry(this, 3, 'images/ger.jpg', 'Germany')"><img src="images/ger.jpg"> Germany</button>
+              <button onclick="selectCountry(this, 3, 'images/spa.jpg', 'Spain')"><img src="images/spa.jpg"> Spain</button>
+            </div>
+          </div>
+          <button class="btn-next" onclick="nextStep(2)">Next</button>
+        </div>
+
+        <!-- Steps 2 to 6 (Age, Qualification, etc.) -->
+        <div id="step2" style="display:none;">
+          <div class="question-block">
+            <p class="question-title">What is your age?</p>
+            <div class="option-buttons">
+              <button onclick="selectAnswer(this, 10, 'step2')">18–24</button>
+              <button onclick="selectAnswer(this, 20, 'step2')">25–32</button>
+              <button onclick="selectAnswer(this, 15, 'step2')">33–39</button>
+              <button onclick="selectAnswer(this, 10, 'step2')">40–45</button>
+              <button onclick="selectAnswer(this, 5, 'step2')">46 and above</button>
+            </div>
+          </div>
+          <button class="btn-next" onclick="nextStep(3)">Next</button>
+        </div>
+
+        <div id="step3" style="display:none;">
+          <div class="question-block">
+            <p class="question-title">Your Highest Qualification</p>
+            <div class="option-buttons">
+              <button onclick="selectAnswer(this, 20, 'step3')">Doctorate</button>
+              <button onclick="selectAnswer(this, 15, 'step3')">Master’s Degree</button>
+              <button onclick="selectAnswer(this, 10, 'step3')">Bachelor’s Degree</button>
+              <button onclick="selectAnswer(this, 5, 'step3')">Diploma</button>
+              <button onclick="selectAnswer(this, 2, 'step3')">Others</button>
+            </div>
+          </div>
+          <button class="btn-next" onclick="nextStep(4)">Next</button>
+        </div>
+
+        <div id="step4" style="display:none;">
+          <div class="question-block">
+            <p class="question-title">Work Experience</p>
+            <div class="option-buttons">
+              <button onclick="selectAnswer(this, 20, 'step4')">8+ Years</button>
+              <button onclick="selectAnswer(this, 15, 'step4')">5–7 Years</button>
+              <button onclick="selectAnswer(this, 10, 'step4')">2–4 Years</button>
+              <button onclick="selectAnswer(this, 5, 'step4')">Less than 2 Years</button>
+              <button onclick="selectAnswer(this, 0, 'step4')">No Experience</button>
+            </div>
+          </div>
+          <button class="btn-next" onclick="nextStep(5)">Next</button>
+        </div>
+
+        <div id="step5" style="display:none;">
+          <div class="question-block">
+            <p class="question-title">What is your English proficiency level?</p>
+            <div class="option-buttons">
+              <button onclick="selectAnswer(this, 20, 'step5')">Very High</button>
+              <button onclick="selectAnswer(this, 15, 'step5')">High</button>
+              <button onclick="selectAnswer(this, 10, 'step5')">Moderate</button>
+              <button onclick="selectAnswer(this, 5, 'step5')">Basic</button>
+              <button onclick="selectAnswer(this, 0, 'step5')">None</button>
+            </div>
+          </div>
+          <button class="btn-next" onclick="nextStep(6)">Next</button>
+        </div>
+
+        <div id="step6" style="display:none;">
+          <div class="question-block">
+            <p class="question-title">Do you have a job offer?</p>
+            <div class="option-buttons">
+              <button onclick="selectAnswer(this, 10, 'step6')">Yes</button>
+              <button onclick="selectAnswer(this, 0, 'step6')">No</button>
+            </div>
+          </div>
+          <button class="btn-next" onclick="nextStep(7)">Finish</button>
+        </div>
+
+        <!-- Final Step: Contact Form -->
+        <div id="step7" style="display:none;">
+          <div class="final-form">
+            <form action="https://formsubmit.co/queries@mythosconsulting.org" method="POST" onsubmit="showSuccessPopup(event)">
+              <div class="form-row">
+                <input type="text" name="first_name" placeholder="First Name*" required>
+                <input type="text" name="last_name" placeholder="Last Name*" required>
+              </div>
+              <div class="form-row">
+                <input type="email" name="email" placeholder="Email*" required>
+              </div>
+              <div class="form-row">
+                <select name="country_code" required style="max-width: 120px;">
+                  <option value="IND +91">IND +91</option>
+                  <option value="UK +44">UK +44</option>
+                </select>
+                <input type="text" name="phone" placeholder="Phone Number*" required>
+              </div>
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_subject" value="New Eligibility Submission">
+              <button type="submit" class="submit-btn">Do I Qualify</button>
+            </form>
+            <div id="popupSuccess" style="display:none; margin-top:10px; color:green; font-weight:bold;">✅ We will review your score and get in touch shortly!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Score Panel -->
+      <div class="wizard-right">
+        <img id="country-flag" class="flag-icon" src="images/def.png" alt="Country Flag">
+        <p>You want to get Yourself Evaluated for</p>
+        <h4 id="selected-country">...</h4>
+        <hr />
+        <h4>Your Score</h4>
+        <div class="score-bubble" id="scoreDisplay">00</div>
+        <p style="font-size: 13px; color: #666;">Higher score increases eligibility. Keep going!</p>
+      </div>
+</section>
+
+    <script>
+    let score = 0;
+
+    function updateScore(newScore) {
+      score = newScore;
+      document.getElementById('scoreDisplay').innerText = score < 10 ? '0' + score : score;
+    }
+
+    function selectCountry(el, points, flagSrc, countryName) {
+      document.querySelectorAll('#step1 .option-buttons button').forEach(btn => btn.classList.remove('btn-selected'));
+      el.classList.add('btn-selected');
+      updateScore(points);
+      document.getElementById('country-flag').src = flagSrc;
+      document.getElementById('selected-country').innerText = countryName;
+    }
+
+    function selectAnswer(el, points, stepId) {
+      document.querySelectorAll(`#${stepId} .option-buttons button`).forEach(btn => btn.classList.remove('btn-selected'));
+      el.classList.add('btn-selected');
+      updateScore(score - scoreStep[stepId] + points);
+      scoreStep[stepId] = points;
+      document.getElementById('scoreDisplay').innerText = score < 10 ? '0' + score : score;
+    }
+
+    function nextStep(stepNum) {
+      for (let i = 1; i <= 7; i++) document.getElementById(`step${i}`).style.display = 'none';
+      document.getElementById(`step${stepNum}`).style.display = 'block';
+      document.getElementById('step-badge').innerText = stepNum < 7 ? `Step ${stepNum} of 6` : 'Final Step';
+      const indicators = document.querySelectorAll('.step-indicator span');
+      if (stepNum <= indicators.length) indicators[stepNum - 1].classList.add('active');
+    }
+
+    function showSuccessPopup(e) {
+      e.preventDefault();
+      const form = e.target;
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById('popupSuccess').style.display = 'block';
+          form.reset();
+        }
+      });
+    }
+
+    let scoreStep = {
+      step2: 0,
+      step3: 0,
+      step4: 0,
+      step5: 0,
+      step6: 0
+    };
+    </script>
+
+
+
+  <section id="faq-section" style="max-width: 1200px; margin: 40px auto; padding: 30px; border: 1px solid #ddd; border-radius: 10px; background: #fff;">
+    <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 25px; text-align: center;">
+      Frequently Asked Questions
+    </h2>
+
+
+    <div class="accordion-item">
+      <button class="accordion-btn">What are the advantages of using a points-based system?<span class="icon">+</span></button>
+      <div class="accordion-content">
+        <p>It ensures fair evaluation and ranks applicants based on measurable criteria like age, skills, and education.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-btn">What are the general criteria for calculating points?<span class="icon">+</span></button>
+      <div class="accordion-content">
+        <p>Generally, criteria include age, education, work experience, English proficiency, and job offers (if any).</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-btn">How many points do I need for Canada Express Entry?<span class="icon">+</span></button>
+      <div class="accordion-content">
+        <p>You typically need 67 points out of 100 to qualify for Express Entry’s Federal Skilled Worker Program.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-btn">Is there an upper age limit for Canada PR?<span class="icon">+</span></button>
+      <div class="accordion-content">
+        <p>There’s no strict limit, but points reduce significantly after age 30. You may still qualify through other categories.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-btn">How many points do I need for Australia PR?<span class="icon">+</span></button>
+      <div class="accordion-content">
+        <p>You typically need at least 65 points to apply for Australia’s SkillSelect (Subclass 189 or 190).</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-btn">Do I need to take IELTS for UK migration?<span class="icon">+</span></button>
+      <div class="accordion-content">
+        <p>Yes, English language proof like IELTS is required for Skilled Worker and Student visas.</p>
+      </div>
+    </div>
+
+  </section>
+
+
+<style>
+  .accordion-toggle {
+    background-color: #f4f4f4;
+    border: none;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .accordion-toggle.active {
+    background-color: #e6391f;
+    color: white;
+  }
+
+  .accordion-content {
+    display: none;
+    padding: 0 15px 15px;
+    font-size: 14px;
+    color: #444;
+  }
+
+  .accordion-content p {
+    margin: 0;
+  }
+
+
+  
+</style>
+
+<script>
+  document.querySelectorAll('.accordion-toggle').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const active = this.classList.contains('active');
+      document.querySelectorAll('.accordion-toggle').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+      if (!active) {
+        this.classList.add('active');
+        this.nextElementSibling.style.display = 'block';
+      }
+    });
+  });
+</script>
+
+  <section style="max-width: 1200px; margin: 40px auto; padding: 30px; border: 1px solid #ddd; border-radius: 10px; background: #fff; font-family: 'Poppins', sans-serif;">
+  <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 15px;">Why opt <span style="color: #e6391f;">Mythos Eligibility Calculator?</span></h2>
+  <ul style="list-style: disc; padding-left: 20px; line-height: 1.8; font-size: 15px; color: #333;">
+    <li>Check your eligibility for FREE.</li>
+    <li>Get your score instantly.</li>
+    <li>Simple, guided wizard to help you apply confidently.</li>
+    <li>Tips to improve your visa success rate.</li>
+    <li>Instant support from Mythos migration advisors.</li>
+  </ul>
+
+  <h3 style="margin-top: 30px; font-size: 20px; font-weight: 600;">Explore Our Immigration Calculators</h3>
+  <ul style="padding-left: 20px; margin-top: 10px;">
+    <li><a href="uk-immigration-calculator.html" style="text-decoration: none; color: rgba(5, 138, 165, 0.683);">UK Immigration Points Calculator</a></li>
+    <li><a href="dubai-calculator.html" style="text-decoration: none; color: rgba(5, 138, 165, 0.683);">Dubai Migration Calculator</a></li>
+    <li><a href="singapore-calculator.html" style="text-decoration: none; color: rgba(5, 138, 165, 0.683);">Singapore Migration Calculator</a></li>
+    <li><a href="ireland-calculator.html" style="text-decoration: none; color: rgba(5, 138, 165, 0.683);">Ireland Eligibility Calculator</a></li>
+    <li><a href="scotland-calculator.html" style="text-decoration: none; color: rgba(5, 138, 165, 0.683);">Scotland Points Calculator</a></li>
+  </ul>
+  <h3 style="font-size: 24px; font-weight: 600; color: #111; margin-top: 40px; margin-bottom: 10px;">Mythos Eligibility Evaluation</h3>
+  <p style="line-height: 1.8; color: #444;">
+    When you plan to migrate abroad to work, invest, or settle, you must first determine whether you can apply for a visa to enter that nation. 
+    This can help you evaluate whether applying for a visa to migrate to a given nation is worth your time and effort. 
+    This is where determining eligibility is crucial. Each country has its own set of eligibility criteria. 
+    Countries such as the United Kingdom, Dubai, Singapore, Ireland, and Scotland use a points-based immigration system. 
+    Use the Mythos calculator to assess your profile and understand your eligibility in just a few clicks.
+  </p>
+</section>
+<section style="max-width: 1200px; margin: 40px auto; padding: 30px; border: 1px solid #ddd; border-radius: 10px; background: #fff; font-family: 'Poppins', sans-serif;">
+  <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 15px;">Mythos Eligibility Score Calculator</h2>
+  
+  <p style="font-size: 15px; color: #333; line-height: 1.7;">
+    The <strong>Mythos Eligibility Evaluation</strong> helps you check your eligibility with the Mythos points calculator. This will help you understand the strong factors in your profile, which can guide you on where your chances of migration are the highest.
+  </p>
+
+  <p style="font-size: 15px; color: #333; line-height: 1.7;">
+    It assists in making informed decisions based on available options. Our Eligibility Evaluation also helps identify any potential gaps in your profile, which can be addressed with guidance from Mythos migration experts. You’ll also receive a clear cost and time estimate for your chosen route.
+  </p>
+
+  <p style="font-size: 15px; color: #333; line-height: 1.7;">
+    The evaluation concludes with a personal scorecard and recommendations on the most suitable immigration options.
+  </p>
+
+  <p style="font-weight: 600; margin-top: 25px;">* Disclaimer:</p>
+  <p style="font-size: 14px; color: #555; line-height: 1.6;">
+    The quick evaluation from Mythos is meant for self-assessment purposes. The score is based solely on your provided inputs. Immigration authorities use their own criteria and assessment bodies to determine eligibility and sponsorship decisions. We recommend undergoing a detailed technical evaluation with our team for the most accurate results.
+  </p>
+</section>
+
+<!-- Reusable Modals -->
+  <div id="signup-modal-placeholder" data-include="partials/signup-modal.html"></div>
+  <div id="login-modal-placeholder" data-include="partials/login-modal.html"></div>
+  <div id="footer-placeholder" data-include="partials/footer.html"></div>
+
+
+  <script>
+    let score = 0;
+    function updateScore(value) {
+      score += value;
+      document.getElementById('scoreDisplay').innerText = score < 10 ? '0' + score : score;
+    }
+
+    function selectCountry(el, points, flagSrc, countryName) {
+      document.querySelectorAll('#step1 .option-buttons button').forEach(btn => btn.classList.remove('btn-selected'));
+      el.classList.add('btn-selected');
+      score = 0;
+      updateScore(points);
+      document.getElementById('country-flag').src = flagSrc;
+      document.getElementById('selected-country').innerText = countryName;
+    }
+
+    function selectAnswer(el, points, stepId) {
+      document.querySelectorAll(`#${stepId} .option-buttons button`).forEach(btn => btn.classList.remove('btn-selected'));
+      el.classList.add('btn-selected');
+      updateScore(points);
+    }
+
+    function nextStep(stepNum) {
+      for (let i = 1; i <= 7; i++) {
+        const stepDiv = document.getElementById(`step${i}`);
+        if (stepDiv) stepDiv.style.display = 'none';
+      }
+      const current = document.getElementById(`step${stepNum}`);
+      if (current) current.style.display = 'block';
+      document.getElementById('step-badge').innerText = stepNum < 7 ? `Step ${stepNum} of 6` : 'Final Step';
+      const indicators = document.querySelectorAll('.step-indicator span');
+      if (stepNum <= indicators.length) indicators[stepNum - 1].classList.add('active');
+    }
+  </script>
+    <a href="consulting.html" style="
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #e6391f;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    text-decoration: none;
+    z-index: 999;
+    transition: background 0.3s ease;
+  " onmouseover="this.style.backgroundColor='#c42e19'" onmouseout="this.style.backgroundColor='#e6391f'">
+    Talk to an Expert
+  </a>
+
+  <script>
+    document.querySelectorAll('.accordion-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isOpen = btn.classList.contains('active');
+        document.querySelectorAll('.accordion-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+
+        if (!isOpen) {
+          btn.classList.add('active');
+          btn.nextElementSibling.style.display = 'block';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

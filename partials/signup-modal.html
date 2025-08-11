@@ -1,0 +1,72 @@
+<div id="signupModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2>Get Free Consultation!</h2>
+  
+      <!-- Social icons -->
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/checkpoint/rm/sign-in-another-account?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin" target="_blank">
+          <img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn" />
+          
+        </a>
+        <div id="g_id_onload"
+        data-client_id="YOUR_GOOGLE_CLIENT_ID"
+        data-context="signin"
+        data-ux_mode="popup"
+        data-callback="handleCredentialResponse"
+        data-auto_prompt="false">
+        </div>
+  
+       <div class="g_id_signin"
+        data-type="icon"
+        data-shape="circle"
+        data-theme="filled_black"
+        data-size="large">
+       </div>
+      </div>
+     
+      <!-- Input Fields -->
+      <div class="modal-form">
+        <!-- Left Column -->
+        <div class="left-form">
+          <input type="text" placeholder="First Name" />
+          <input type="email" placeholder="E-mail" />
+        </div>
+  
+        <!-- Right Column -->
+        <div class="right-form">
+          <input type="text" placeholder="Last Name" />
+          <div class="phone-row">
+            <select>
+              <option value="+91">IND +91</option>
+              <option value="+1">USA +1</option>
+              <option value="+44">UK +44</option>
+            </select>
+            <input type="text" placeholder="Phone Number" />
+          </div>
+        </div>
+      </div>
+  
+      <!-- Terms and WhatsApp Row -->
+      <div class="terms-row">
+        <label>
+          <input type="checkbox" checked />
+          I accept the <a href="#">Terms & Conditions</a>
+        </label>
+        <label>
+          <input type="checkbox" class="toggle" />
+          Use this as WhatsApp number
+        </label>
+      </div>
+  
+      <!-- Submit Button -->
+      <button class="submit-btn">Get Started</button>
+    </div>
+  </div>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+    function handleCredentialResponse(response) {
+      console.log("Encoded JWT ID token: " + response.credential);
+      // You can decode and use this token on the backend for user authentication
+    }
+  </script>

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>YourBrand - Migration Services</title>
+<link href="styles.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+<!-- Swiper CSS -->
+<link href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" rel="stylesheet"/>
+<script async="" defer="" src="https://accounts.google.com/gsi/client"></script>
+<style>
+    section {
+      max-width: 1140px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+    .active {
+      opacity: 1 !important;
+      transform: translateY(0px) !important;
+    }
+    .scroll-fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+    
+  </style>
+</head>
+<body>
+<!-- Reusable Header -->
+<div data-include="partials/header.html" id="header-placeholder"></div>
+<!-- Homepage Banner Section -->
+<section class="homepage-banner scroll-fade-in">
+<div class="container banner-content">
+<div class="banner-left">
+<img alt="Chat Support" src="images/home3.jpg"/>
+<a class="chat-overlay" href="https://wa.me/447442398639" target="_blank">
+<div class="chat-row">
+<p>Have Questions? Chat with us</p>
+<div class="chat-number">
+<img alt="WhatsApp" src="https://img.icons8.com/color/24/whatsapp--v1.png"/>
+<strong>0744 239 8639</strong>
+</div>
+</div>
+</a>
+</div>
+<div class="banner-right">
+<h2>What can we do for you today?</h2>
+<div class="action-buttons">
+<a class="action yellow" href="study.html">Study</a>
+<a class="action purple" href="#">BusinessSetup</a>
+<a class="action blue" href="work.html">Work</a>
+<a class="action green" href="#">Visit</a>
+</div>
+<div class="help-line">
+<img alt="Help" src="images/help.PNG"/>
+<span>Don't know what to do? <a href="#">Get free Counselling?</a></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Hero Resume Check Section -->
+<!-- Hero Resume Check Section -->
+<section class="resume-section" id="resume-section">
+<div class="resume-container">
+<div class="resume-left scroll-fade-in">
+<h2>Start Your Journey Abroad with Confidence</h2>
+<p>Free resume check and expert guidance for migration, work or study abroad.</p>
+<form action="https://formsubmit.co/queries@mythosconsulting.org" class="resume-form" enctype="multipart/form-data" id="resumeCheckForm" method="POST">
+<!-- FormSubmit Settings -->
+<input name="_subject" type="hidden" value="📄 New Resume Check Request – Mythos Homepage"/>
+<input name="_captcha" type="hidden" value="false"/>
+<input name="Name" placeholder="Your Name" required="" type="text">
+<input name="Email" placeholder="Your Email" required="" type="email">
+<input name="Resume" required="" type="file"/>
+<div class="form-buttons">
+<button type="submit">Get Free Resume Check</button>
+<a class="whatsapp-btn" href="https://wa.me/447442398639?text=Hi%20Mythos%20Team%2C%20I%20need%20a%20free%20resume%20check" target="_blank">
+<img alt="WhatsApp" src="https://img.icons8.com/color/24/000000/whatsapp.png"/>
+            Chat with Us
+          </a>
+</div>
+<div class="popup-success" id="resumeCheckSuccess" style="display: none;">✅ Resume submitted successfully!</div>
+</input></input></form>
+</div>
+<div class="resume-right">
+<img alt="Resume Guidance" src="images/home4.jpg"/>
+</div>
+<canvas id="bgParticles"></canvas>
+</div>
+</section>
+<!--Consulting section-->
+<!-- White Gap Wrapper -->
+<section class="consulting-wrapper">
+<section class="consulting-section scroll-fade-in" data-aos="fade-up">
+<div class="consulting-container">
+<!-- Left Image -->
+<div class="consulting-image" data-aos="fade-right">
+<img alt="Consulting Services" src="images/consult.png"/>
+</div>
+<!-- Right Content -->
+<div class="consulting-content" data-aos="fade-left">
+<div class="vertical-bar purple-bar"></div>
+<div class="content-box">
+<h2>Consulting</h2>
+<p>Unlock new opportunities with our expert consultation</p>
+<!-- Consulting Buttons -->
+<div class="consulting-buttons" style="position: relative;">
+<a class="consult-btn" href="consulting.html#consult-form">Free Consultation</a>
+<a class="consult-btn" href="consulting.html#resume-section">Explore Your Myth</a>
+<a class="consult-btn" href="consulting.html#why-mythos">Why Mythos?</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+<!-- Career Services Section -->
+<!-- White Gap Wrapper -->
+<section class="career-wrapper">
+<section class="career-section scroll-fade-in" data-aos="fade-up">
+<div class="career-container">
+<!-- Left Image -->
+<div class="career-image" data-aos="fade-right">
+<img alt="Career Support" src="images/work1.png"/>
+</div>
+<!-- Right Content -->
+<div class="career-content" data-aos="fade-left">
+<div class="vertical-bar orange-bar"></div>
+<div class="content-box">
+<h2>Career Services</h2>
+<p>Empowering your professional journey with tailored support</p>
+<div class="career-buttons">
+<a class="career-btn" href="work.html">Career Launchpad</a>
+<a class="career-btn" href="work.html">Global Talent Connect</a>
+<a class="career-btn wide" href="work.html">Local Job Compass</a>
+<a class="career-btn wide" href="work.html">Work Abroad Navigator</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<!--Study-->
+<!-- White Gap Wrapper -->
+<section class="study-wrapper">
+<section class="study-section scroll-fade-in" data-aos="fade-up">
+<div class="study-container">
+<!-- Left Image -->
+<div class="study-image" data-aos="fade-right">
+<img alt="Study Opportunities" src="images/study1.png"/>
+</div>
+<!-- Right Content -->
+<div class="study-content" data-aos="fade-left">
+<div class="vertical-bar yellow-bar"></div>
+<div class="content-box">
+<h2>Study</h2>
+<p>Discover your career opportunities</p>
+<div class="study-buttons">
+<a class="study-btn" href="study.html">Study Gateway</a>
+<a class="study-btn" href="study.html">Study Smart with Mythos</a>
+<a class="study-btn" href="study.html">Explore Your Future Campus</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<!-- Launch Your Venture Section -->
+<!-- White Gap Wrapper -->
+<section class="venture-wrapper">
+<section class="venture-section scroll-fade-in" data-aos="fade-up">
+<div class="venture-container">
+<!-- Left Image -->
+<div class="venture-image" data-aos="fade-right">
+<img alt="Business Setup" src="images/business1.png"/>
+</div>
+<!-- Right Content -->
+<div class="venture-content" data-aos="fade-left">
+<div class="vertical-bar blue-bar"></div>
+<div class="content-box">
+<h2>Launch Your Venture</h2>
+<p>Build your dream business with expert support from Mythos</p>
+<div class="venture-buttons">
+<a class="venture-btn" href="#">Startup Incorporation</a>
+<a class="venture-btn" href="#">Business Plan Consultation</a>
+<a class="venture-btn" href="#">Franchise Partnership</a>
+<a class="venture-btn" href="#">Tax &amp; Compliance</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<!--News Section-->
+<section class="news-section" id="latest-news">
+<div class="container">
+<h2 class="section-title">Latest UK Immigration News</h2>
+<div class="news-grid">
+<div class="news-card">
+<img alt="News 1" src="https://tse3.mm.bing.net/th?id=OIP.xejeUsI8RiOStyXab9r09QHaE7&amp;pid=Api"/>
+<div class="news-content">
+<h3>UK to Tighten Residency Rules</h3>
+<p>Plans to extend ILR eligibility and apply stricter financial tests for long-term migrants.</p>
+<a href="https://www.ft.com/content/afa1aee7-1f21-4c3a-b32e-54fcb5b1ede7" target="_blank">Read More</a>
+</div>
+</div>
+<div class="news-card">
+<img alt="News 2" src="https://tse2.mm.bing.net/th?id=OIP.L4_dM0IEJ3RuJq3EcH9e9wHaEK&amp;pid=Api"/>
+<div class="news-content">
+<h3>English Level Raised for Migrants</h3>
+<p>Migrants must now prove higher English proficiency under new B2 requirement.</p>
+<a href="https://www.thetimes.co.uk/article/all-migrants-will-have-to-be-fluent-in-english-to-stay-in-uk-m9tn2d895" target="_blank">Read More</a>
+</div>
+</div>
+<div class="news-card">
+<img alt="News 3" src="https://tse4.mm.bing.net/th?id=OIP.vMgOKmx2BkhWTMINvMSmUgHaEK&amp;pid=Api"/>
+<div class="news-content">
+<h3>Asylum Housing Cost Triples</h3>
+<p>Projected cost rises to £15B over 10 years due to hotel dependency.</p>
+<a href="https://www.theguardian.com/world/2025/may/07/uk-asylum-seeker-accommodation-costs-over-decade-triple-to-15bn-nao" target="_blank">Read More</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!--Testimonials
+<section class="testimonials-section">
+  <h2>What Our Clients Say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="client-info">
+        <img src="images/c1.png" alt="Arjun" />
+        <div>
+          <h4>Arjun R.</h4>
+          
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <p>“Mythos helped me secure my UK work visa smoothly. Their team is professional and responsive.”</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="client-info">
+        <img src="images/c2.png" alt="Meera" />
+        <div>
+          <h4>Meera K.</h4>
+          
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <p>“The resume check and counselling made my study abroad journey stress-free. Highly recommend!”</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="client-info">
+        <img src="images/c3.png" alt="John" />
+        <div>
+          <h4>John S.</h4>
+          
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <p>“Clear, honest advice and end-to-end support — Mythos is a game changer for migration help.”</p>
+    </div>
+  </div>
+</section>
+-->
+<!-- Reusable Modals -->
+<div data-include="partials/signup-modal.html" id="signup-modal-placeholder"></div>
+<div data-include="partials/login-modal.html" id="login-modal-placeholder"></div>
+<!-- Free Counselling Modal -->
+<div class="modal" id="counsellingModal">
+<div class="modal-content">
+<span class="close" onclick="closeCounsellingModal()">×</span>
+<h3>Book Free Counselling</h3>
+<form action="https://formsubmit.co/queries@mythosconsulting.org" id="counsellingForm" method="POST">
+<input name="_subject" type="hidden" value="📋 New Counselling Request – Mythos"/>
+<input name="_captcha" type="hidden" value="false"/>
+<input name="Name" placeholder="Your Name" required="" type="text"/>
+<input name="Email" placeholder="Your Email" required="" type="email"/>
+<input name="Phone" placeholder="Phone Number" required="" type="text"/>
+<select name="Interest" required="">
+<option value="">I'm interested in...</option>
+<option value="Work Abroad">Work Abroad</option>
+<option value="Study Abroad">Study Abroad</option>
+<option value="Business Setup">Business Setup</option>
+<option value="Visa Guidance">Visa Guidance</option>
+</select>
+<button type="submit">Submit</button>
+<div class="popup-success" id="counsellingSuccess" style="display: none;">✅ Request submitted!</div>
+</form>
+</div>
+</div>
+<!-- Reusable Footer -->
+<div data-include="partials/footer.html" id="footer-placeholder"></div>
+<!-- Scripts -->
+<script src="js/include.js"></script>
+<script>
+  const modal = document.getElementById("signupModal");
+  const signupTrigger = document.getElementById("signupTrigger");
+
+  if (signupTrigger) {
+    signupTrigger.addEventListener("click", function (e) {
+      e.preventDefault();
+      modal.style.display = "block";
+    });
+  }
+
+  function closeModal() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+<script>
+  // Open login modal
+  const loginTrigger = document.getElementById("loginTrigger");
+  const loginModal = document.getElementById("loginModal");
+
+  if (loginTrigger) {
+    loginTrigger.addEventListener("click", function (e) {
+      e.preventDefault();
+      loginModal.style.display = "block";
+    });
+  }
+
+  function closeLoginModal() {
+    loginModal.style.display = "none";
+  }
+
+  // Click outside to close
+  window.onclick = function (event) {
+    if (event.target === loginModal) {
+      loginModal.style.display = "none";
+    }
+  }
+
+  // Toggle password visibility
+  function togglePassword() {
+    const pw = document.getElementById("loginPassword");
+    pw.type = pw.type === "password" ? "text" : "password";
+  }
+</script>
+<script>
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      }
+    });
+  });
+  document.querySelectorAll(".scroll-fade-in").forEach((el) => observer.observe(el));
+  
+  // Particle background
+  const canvas = document.getElementById("bgParticles");
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+  
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = document.querySelector('.resume-section').offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+  
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < 50; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        speedY: Math.random() * 0.5 + 0.5
+      });
+    }
+  }
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = "#cce5ff";
+      ctx.fill();
+      p.y += p.speedY;
+      if (p.y > canvas.height) p.y = 0;
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  createParticles();
+  drawParticles();
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init();
+  </script>
+<script>
+    const API_KEY = "14a3fea85f644f4fb687bed3edc0838f";  // <-- replace with your real API key
+    const query = "uk immigration";
+    const endpoint = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=en&sortBy=publishedAt&pageSize=3&apiKey=${API_KEY}`;
+  
+    fetch(endpoint)
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById("newsContainer");
+  
+        if (!data.articles || data.articles.length === 0) {
+          container.innerHTML = "<p>No news found.</p>";
+          return;
+        }
+  
+        container.innerHTML = data.articles.map(article => `
+          <div class="news-card">
+            <img src="${article.urlToImage || 'images/default-news.jpg'}" alt="News Image" />
+            <div class="news-content">
+              <h3>${article.title}</h3>
+              <p>${article.description || ''}</p>
+              <a href="${article.url}" target="_blank">Read More</a>
+            </div>
+          </div>
+        `).join("");
+      })
+      .catch(error => {
+        console.error("Error fetching news:", error);
+        document.getElementById("newsContainer").innerHTML = "<p>Failed to load news.</p>";
+      });
+  </script>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('.testimonial-swiper', {
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    slidesPerView: 1,
+    spaceBetween: 30,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2
+      },
+      1024: {
+        slidesPerView: 3
+      }
+    }
+  });
+</script>
+<script>
+  document.querySelector(".submit-btn").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const firstName = document.querySelector("input[placeholder='First Name']").value;
+    const lastName = document.querySelector("input[placeholder='Last Name']").value;
+    const email = document.querySelector("input[placeholder='E-mail']").value;
+    const phone = document.querySelector("input[placeholder='Phone Number']").value;
+    const isWhatsapp = document.querySelector(".toggle").checked;
+    const termsAccepted = document.querySelector("input[type='checkbox']:not(.toggle)").checked;
+
+    if (!termsAccepted) {
+      alert("Please accept the Terms & Conditions.");
+      return;
+    }
+
+    if (!firstName || !lastName || !email || !phone) {
+      alert("Please fill in all the fields.");
+      return;
+    }
+
+    // Log or send to server
+    console.log({
+      firstName, lastName, email, phone, isWhatsapp
+    });
+
+    alert("Form submitted successfully!");
+  });
+</script>
+<script>
+  function handleCredentialResponse(response) {
+    const token = response.credential;
+    console.log("Google JWT Token:", token);
+    // Send this token to your server or handle user login here
+  }
+</script>
+<script>
+  // Open modal on link click
+  document.querySelector('.help-line a').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('counsellingModal').style.display = 'flex';
+  });
+
+  // Close modal
+  function closeCounsellingModal() {
+    document.getElementById('counsellingModal').style.display = 'none';
+  }
+
+  // Handle submission
+  const counsellingForm = document.getElementById('counsellingForm');
+  const counsellingSuccess = document.getElementById('counsellingSuccess');
+
+  counsellingForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const formData = new FormData(counsellingForm);
+
+    fetch(counsellingForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        counsellingSuccess.style.display = 'block';
+        counsellingForm.reset();
+        setTimeout(() => {
+          counsellingSuccess.style.display = 'none';
+          closeCounsellingModal();
+        }, 4000);
+      } else {
+        alert("Submission failed. Please try again.");
+      }
+    })
+    .catch(() => {
+      alert("Submission failed. Please try again.");
+    });
+  });
+
+  // Close on outside click
+  window.onclick = function(event) {
+    const modal = document.getElementById('counsellingModal');
+    if (event.target === modal) {
+      closeCounsellingModal();
+    }
+  };
+</script>
+<!--resume check-->
+<script>
+  const resumeCheckForm = document.getElementById('resumeCheckForm');
+  const resumeCheckSuccess = document.getElementById('resumeCheckSuccess');
+
+  resumeCheckForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const formData = new FormData(resumeCheckForm);
+
+    fetch(resumeCheckForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        resumeCheckSuccess.style.display = 'block';
+        resumeCheckForm.reset();
+        setTimeout(() => {
+          resumeCheckSuccess.style.display = 'none';
+        }, 4000);
+      } else {
+        alert("Submission failed. Please try again.");
+      }
+    })
+    .catch(() => {
+      alert("Submission failed. Please try again.");
+    });
+  });
+</script>
+<script>
+  const popup = document.getElementById("popupConsultForm");
+  const toggleBtn = document.getElementById("togglePopupBtn");
+  const successMsg = document.getElementById("inlineSuccessMsg");
+
+  toggleBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    popup.style.display = popup.style.display === "block" ? "none" : "block";
+  });
+
+  // Optional: close popup when clicking outside
+  document.addEventListener("click", function(e) {
+    if (!popup.contains(e.target) && !toggleBtn.contains(e.target)) {
+      popup.style.display = "none";
+    }
+  });
+
+  // Form handling
+  popup.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    fetch(this.action, {
+      method: "POST",
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(res => {
+      if (res.ok) {
+        this.reset();
+        successMsg.style.display = "block";
+        setTimeout(() => {
+          successMsg.style.display = "none";
+          popup.style.display = "none";
+        }, 3000);
+      } else {
+        alert("Submission failed.");
+      }
+    }).catch(() => alert("Submission error."));
+  });
+</script>
+</body>
+</html>

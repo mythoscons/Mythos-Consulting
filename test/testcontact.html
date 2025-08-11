@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us – Mythos</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="js/include.js" defer></script>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    .contact-wrapper {
+      max-width: 1100px;
+      margin: 40px auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      display: flex;
+      gap: 0;
+    }
+    .contact-left { flex: 1; overflow: hidden; }
+    .contact-left img {
+      width: 100%; height: 100%; object-fit: cover;
+      border-top-left-radius: 6px; border-bottom-left-radius: 6px;
+    }
+    .contact-right {
+      flex: 1; padding: 40px 30px; background-color: #fefefe;
+    }
+    .contact-right h2 {
+      font-size: 26px; margin-bottom: 25px;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* Consistent spacing */
+      margin-bottom: 12px;
+    }
+
+    .form-row-inline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+    .form-row-inline label {
+      flex: 0 0 130px; /* consistent width */
+      font-size: 14px;
+    }
+
+    .form-row-inline input,
+    .form-row-inline select {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .phone-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .phone-input {
+      flex: 1;
+    }
+
+    .whatsapp-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      font-size: 13px;
+      margin-top: 4px;  /* reset to mild space */
+    }
+
+    .terms-row-inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      margin-top: 8px;  /* smooth spacing */
+    }
+
+    .submit-btn-small {
+      background-color: #e6391f;
+      color: white;
+      padding: 10px 30px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 4px;
+      width: auto;
+      align-self: flex-start;
+      margin-top: 0;
+    }
+    .popup-success {
+    display: none;
+    margin-top: 10px;
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+
+    .contact-extras {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .contact-info ul {
+      list-style: none;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .contact-info a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .faq-section, .contact-info, .map-section {
+      margin-top: 40px;
+    }
+
+    .faq-item {
+      margin-bottom: 15px;
+      
+    }
+    .accordion {
+        margin-top: 20px;
+        border-top: 1px solid #ddd;
+    }
+
+    .accordion-item {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .accordion-question {
+        width: 100%;
+        background: white;
+        border: none;
+        outline: none;
+        padding: 16px;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .accordion-question span {
+        font-size: 22px;
+        transition: transform 0.3s ease;
+    }
+
+    .accordion-question.active span {
+        transform: rotate(45deg);
+    }
+
+    .accordion-answer {
+        display: none;
+        padding: 0 16px 16px;
+        color: #555;
+        font-size: 14px;
+    }
+
+
+    .map-section iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      border-radius: 6px;
+    }
+    .map-header {
+        background-color: white;
+        color: black;
+        padding: 40px 0 20px;
+        text-align: center;
+    }
+
+    .map-header h3 {
+        font-size: 28px;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .contact-wrapper {
+        flex-direction: column;
+      }
+
+      .contact-left, .contact-right {
+        border-radius: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Include -->
+  <div id="header-placeholder" data-include="partials/header.html"></div>
+
+  <div class="contact-wrapper">
+    <div class="contact-left">
+      <img src="images/contact.png" alt="Contact Us" />
+    </div>
+    <div class="contact-right">
+      <h2>Get in touch with us!</h2>
+      <form id="contactForm" method="POST" action="https://formsubmit.co/queries@mythosconsulting.org">
+
+        <!-- Hidden fields for FormSubmit -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="📩 New Contact Enquiry – Mythos Consulting">
+        
+        <div class="form-row-inline">
+          <label>I am</label>
+          <input type="text" name="Name" placeholder="Your Name" required />
+        </div>
+
+        <div class="form-row-inline">
+          <label>Looking to</label>
+          <select name="Interest" required>
+            <option value="">Select Interest</option>
+            <option value="Work">Work</option>
+            <option value="Study">Study</option>
+            <option value="Business Setup">Business Setup</option>
+          </select>
+        </div>
+
+        <div class="form-row-inline">
+          <label>Contact me at:</label>
+          <div class="phone-row">
+            <select name="Country Code">
+              <option value="+91">+91</option>
+              <option value="+1">+1</option>
+              <option value="+44">+44</option>
+            </select>
+            <input type="text" name="Phone" placeholder="Phone Number" class="phone-input" required />
+          </div>
+        </div>
+
+        <div class="whatsapp-toggle">
+          <input type="checkbox" id="whatsapp" name="WhatsApp">
+          <label for="whatsapp">Use this as WhatsApp number</label>
+        </div>
+
+        <div class="form-row-inline">
+          <label>Email:</label>
+          <input type="email" name="Email" placeholder="Email Address" required />
+        </div>
+
+        <div class="terms-row-inline">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">I accept the <a href="#">Terms & Conditions</a></label>
+        </div>
+
+        <button type="submit" class="submit-btn-small">Submit</button>
+        <div id="successPopup" class="popup-success">✅ Successfully registered!</div>
+
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- Contact Info + Map + FAQ -->
+  <div class="contact-extras">     
+
+    <section class="map-section">
+        <div class="map-header">
+            <h3>Find Us On Google Maps</h3>
+          </div>
+        
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.697975317288!2d0.06762397696595493!3d51.537099208533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a64018598a85%3A0x862d1ea4bd114d3f!2sRegus%20-%20Barking%2C%20Jhumat%20House!5e0!3m2!1sen!2suk!4v1747071191877!5m2!1sen!2suk" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </section>
+    
+    <section class="contact-info">
+        <h3>Contact Information</h3>
+        <ul>
+          <li><strong>Phone:</strong> <a href="tel:+447767558492">+44 7767 558 492</a></li>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/447442398639" target="_blank">+44 744 239 8639></li>
+          <li><strong>Email:</strong> <a href="mailto:queries@mythosconsulting.org">support@mythosconsulting.org</a></li>
+          <li><strong>Address:</strong> Regus, Jhumat House, 160 London Road, Barking IG11 8BB, UK</li>
+          <li><strong>Working Hours:</strong> Monday–Friday: 9:00 AM – 6:00 PM</li>
+        </ul>
+    </section>
+
+    <section class="faq-section">
+        <h3>Frequently Asked Questions</h3>
+      
+        <div class="accordion">
+            <div class="accordion-item">
+              <button class="accordion-question">How can I get a work visa?<span>+</span></button>
+              <div class="accordion-answer">You can apply through a licensed immigration consultant or the official embassy website.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">What is the meaning of a work visa?<span>+</span></button>
+              <div class="accordion-answer">A work visa allows foreign nationals to work legally in a country for a specific period.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">What is the difference between visa and work permit?<span>+</span></button>
+              <div class="accordion-answer">A visa is an entry document, while a work permit gives permission to be employed.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">Which country is best for Indians to work in?<span>+</span></button>
+              <div class="accordion-answer">Countries like Canada, the UK, Australia, and Germany are popular for Indian professionals.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">How many types of work visas are there?<span>+</span></button>
+              <div class="accordion-answer">There are skilled, seasonal, temporary, and permanent work visas depending on the country.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">Am I eligible for a work visa?<span>+</span></button>
+              <div class="accordion-answer">Eligibility varies by country but generally requires a job offer, skills, and qualifications.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">What is the eligibility for a work visa?<span>+</span></button>
+              <div class="accordion-answer">You need a valid passport, a job offer, experience, and in some cases, a language test score.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">Which work visa is easiest to get?<span>+</span></button>
+              <div class="accordion-answer">Some Gulf countries and Singapore offer quicker processing for certain skilled professions.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">Where can Indians work visa free?<span>+</span></button>
+              <div class="accordion-answer">Visa-free access doesn’t usually permit working. A visa or permit is generally required to work.</div>
+            </div>
+        </div>
+    </section>
+      
+
+  </div>
+
+  <!-- Reusable Modals -->
+  <div id="signup-modal-placeholder" data-include="partials/signup-modal.html"></div>
+  <div id="login-modal-placeholder" data-include="partials/login-modal.html"></div>
+  <div id="footer-placeholder" data-include="partials/footer.html"></div>
+  <script>
+    const accBtns = document.querySelectorAll(".accordion-question");
+  
+    accBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const isActive = btn.classList.contains("active");
+        document.querySelectorAll(".accordion-question").forEach(q => q.classList.remove("active"));
+        document.querySelectorAll(".accordion-answer").forEach(a => a.style.display = "none");
+  
+        if (!isActive) {
+          btn.classList.add("active");
+          btn.nextElementSibling.style.display = "block";
+        }
+      });
+    });
+  </script>
+  
+  <script>
+    const form = document.getElementById('contactForm');
+    const popup = document.getElementById('successPopup');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          popup.style.display = 'block';
+          form.reset();
+          setTimeout(() => {
+            popup.style.display = 'none';
+          }, 4000);
+        } else {
+          return response.json().then(data => {
+            alert(data.message || "Submission failed. Please try again.");
+          });
+        }
+      })
+      .catch(() => {
+        alert("Submission failed. Please try again.");
+      });
+    });
+  </script>
+
+
+</body>
+</html>

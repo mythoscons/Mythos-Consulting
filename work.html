@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Work Visa – Mythos Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="js/include.js" defer></script>
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+    }
+
+    .hero-container {
+      display: flex;
+      max-width: 1200px;
+      margin: 40px auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 15px;
+    }
+
+    .hero-image {
+      flex: 1;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-form-box {
+      flex: 1;
+      padding: 40px 30px;
+    }
+
+    .hero-form-box h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #111;
+    }
+
+    .hero-form-box p {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: none;
+      border-bottom: 1px solid #aaa;
+      outline: none;
+    }
+
+    .input-inline {
+      display: flex;
+      gap: 10px;
+    }
+
+    .input-inline select {
+      width: 100px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      margin-top: -8px;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      accent-color: #0077b6;
+    }
+
+    .submit-btn {
+      background-color: #00a7b3;
+      color: #fff;
+      padding: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .form-footer {
+      margin-top: 20px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-footer img {
+      width: 36px;
+      height: auto;
+    }
+
+    .form-footer span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .form-footer a {
+      color: #e6391f;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero-container {
+        flex-direction: column;
+      }
+    }
+    
+.popular-visa {
+  max-width: 1200px;
+  margin: 40px auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.visa-header {
+  margin-bottom: 15px;
+}
+
+.visa-header h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.visa-header p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.swipe-hint {
+  font-size: 13px;
+  color: #888;
+  margin-top: 10px;
+  display: none;
+}
+
+.visa-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.visa-layout {
+  display: flex;
+  gap: 16px;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+
+.visa-layout::-webkit-scrollbar {
+  display: none;
+}
+
+.visa-card {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f3f3f3;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.visa-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .swipe-hint {
+    display: block;
+  }
+
+  .visa-layout {
+    gap: 12px;
+  }
+
+  .visa-card {
+    width: 160px;
+    height: 230px;
+  }
+}
+
+        .work-visa-section {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 40px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #fff;
+        font-family: 'Poppins', sans-serif;
+        }
+
+        .work-visa-heading {
+        text-align: center;
+        margin-bottom: 40px;
+        }
+        .work-visa-heading h2 {
+        font-size: 28px;
+        font-weight: 600;
+        }
+        .work-visa-heading .highlight {
+        color: #e6391f;
+        }
+
+        .work-visa-combined {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        }
+
+        .work-visa-box {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        overflow: hidden;
+        max-width: 500px;
+        flex: 1 1 45%;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .work-visa-box img {
+        width: 100%;
+        height: auto;
+        }
+
+        .box-content {
+        padding: 20px;
+        }
+
+        .box-content h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        }
+
+        .box-content ul {
+        padding-left: 20px;
+        margin-bottom: 20px;
+        color: #333;
+        }
+        .box-content ul li {
+        margin-bottom: 10px;
+        }
+
+        .btn-group {
+        display: flex;
+        gap: 15px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+        padding: 10px 18px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: 0.3s ease;
+        }
+
+        .btn-primary {
+        background-color: #e6391f;
+        color: white;
+        border: none;
+        }
+
+        .btn-primary:hover {
+        background-color: #c53017;
+        }
+
+        .btn-secondary {
+        border: 1px solid #000;
+        color: #000;
+        background-color: transparent;
+        }
+
+        .btn-secondary:hover {
+        background-color: #f0f0f0;
+        }
+
+        @media (max-width: 768px) {
+        .work-visa-combined {
+            flex-direction: column;
+            align-items: center;
+        }
+        }
+
+        .mythos-assist-container {
+        text-align: center;  
+        max-width: 1200px;
+        margin: 40px auto;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 15px;
+        }
+
+        .mythos-assist-container h2 {
+        font-size: 28px;
+        margin-bottom: 12px;
+        }
+
+        .mythos-assist-container p {
+        color: #444;
+        font-size: 15px;
+        margin-bottom: 40px;
+        }
+
+        .assist-grid {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+        }
+
+        .assist-card {
+        flex: 1;
+        min-width: 280px;
+        max-width: 420px;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+        }
+
+        .assist-card:hover {
+        transform: scale(1.03);
+        }
+
+        .assist-card img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        }
+
+        .assist-card-content {
+        padding: 20px;
+        text-align: left;
+        }
+
+        .assist-card-content h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        color: #111;
+        }
+
+        .assist-card-content ul {
+        padding-left: 20px;
+        margin-bottom: 15px;
+        color: #333;
+        font-size: 14px;
+        }
+
+        .assist-card-content button {
+        background-color: #e6391f;
+        border: none;
+        padding: 10px 18px;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 8px;
+        }
+
+        .assist-card-content .ghost {
+        background: #fff;
+        border: 1px solid #ccc;
+        color: #111;
+        }
+
+        .requirements-section {
+        
+        max-width: 1200px;
+        margin: 40px auto;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 15px;
+      }
+      .requirements-section h2 {
+        text-align: center; 
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #111;
+      }
+      .requirements-section p {
+        font-size: 15px;
+        color: #333;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+      .requirements-section ul {
+        padding-left: 20px;
+      }
+      .requirements-section li {
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: #444;
+      }
+      .requirements-section li b {
+        color: #000;
+      }
+
+      .faq-container {
+       
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .faq-heading {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 10px;
+    }
+
+    .accordion-btn {
+      background: #fff;
+      border: none;
+      outline: none;
+      width: 100%;
+      text-align: left;
+      padding: 18px 20px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .accordion-btn:hover {
+      background-color: #f9f9f9;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 0 20px 15px 20px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .accordion-btn.active + .accordion-content {
+      display: block;
+    }
+
+    .accordion-btn .icon {
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-btn.active .icon {
+      transform: rotate(45deg);
+    }
+  
+
+
+
+
+
+    </style>
+</head>
+<body>
+      <!-- Header Include -->
+    <div id="header-placeholder" data-include="partials/header.html"></div>
+    <section class="hero-container">
+    <!-- Left Image -->
+    <div class="hero-image">
+        <img src="images/work5.jpg" alt="Work Visa Assistance">
+    </div>
+
+    <!-- Right Form -->
+    <div class="hero-form-box"> 
+      <h2>Secure Your Work Visa <br /> Quickly & Easily</h2>
+      <p>Want to Work Overseas? Avail our Job Search Services</p>
+
+     <!-- Work Visa Form -->
+      <form id="workForm">
+        <!-- Hidden Inputs for FormSubmit Settings -->
+        <input type="hidden" name="_subject" value="New Work Visa Request - Mythos">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="Thank you for contacting Mythos. We’ll get back to you shortly.">
+
+        <!-- Name input -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <label for="name" style="white-space: nowrap;">I am</label>
+          <input type="text" id="name" name="Name" required style="flex: 1;" />
+        </div>
+
+        <!-- Country select -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="white-space: nowrap;">wanted to work in</span>
+          <select name="Preferred Country" required style="flex: 1;">
+            <option value="">Select Country</option>
+            <option>UK</option>
+            <option>Ireland</option>
+            <option>Netherlands</option>
+            <option>Germany</option>
+            <option>Spain</option>
+            <option>Malta</option>
+            <option>Latvia</option>
+          </select>
+        </div>
+
+        <!-- Phone input -->
+        <label>You can contact me at</label>
+        <div class="input-inline">
+          <select name="Country Code">
+            <option value="IND +91">IND +91</option>
+            <option value="UK +44">UK +44</option>
+          </select>
+          <input type="text" name="Phone Number" placeholder="Mobile No." required />
+        </div>
+
+        <!-- WhatsApp checkbox -->
+        <div class="checkbox-row">
+          <input type="checkbox" id="whatsapp" name="WhatsApp" value="Yes" checked />
+          <label for="whatsapp">Use this as WhatsApp number</label>
+        </div>
+
+        <!-- Email input -->
+        <input type="email" name="Email" placeholder="Email Id" required />
+
+        <!-- Terms & Conditions -->
+        <div class="checkbox-row">
+          <input type="checkbox" id="terms" required />
+          <label for="terms">I accept the <a href="#">Terms & Conditions</a></label>
+        </div>
+
+        <!-- Submit button -->
+        <button class="submit-btn" type="submit">Get Started</button>
+
+        <!-- Confirmation -->
+        <div class="form-footer">
+          <img src="images/freeconsult.png" alt="Consult Icon" />
+          <span>Don't know what to do? <a href="#signupModal">Get Free Consultation</a></span>
+        </div>
+      </form>
+
+      <!-- Success Popup Message -->
+      <div id="successPopup" style="display:none; padding: 15px; background: #dff0d8; border: 1px solid #3c763d; color: #3c763d; margin-top: 15px; border-radius: 5px;">
+        ✅ Successfully Registered! We’ll contact you shortly.
+      </div>
+    </div>
+
+    </section>
+            
+    <!--Why Mythos-->
+    <section class="mythos-assist-container">
+    <h2>Why Choose <span style="color:#e6391f;">Mythos</span> for Work Visa Assistance?</h2>
+    <p>We simplify your journey to a successful work visa with expert services tailored to your goals.</p>
+
+    <div class="assist-grid">
+        <div class="assist-card">
+        <img src="images/b.JPG" alt="Consultation" />
+        <div class="assist-card-content">
+            <h3>Step 1: Free Assessment</h3>
+            <ul>
+            <li>End-to-end documentation support</li>
+            <li>Know your eligibility & country-specific guidance</li>
+            <li>Understand your strengths and visa goals</li>
+            </ul>
+            <button onclick="window.location.href='consulting.html'">Start Now</button>
+
+        </div>
+        </div>
+
+        <div class="assist-card">
+        <img src="images/a.JPG" alt="Visa Filing" />
+        <div class="assist-card-content">
+            <h3>Step 2: Build Profile & File Visa</h3>
+            <ul>
+            <li>Resume writing by experts</li>
+            <li>Job search assistance in target country</li>
+            <li>Filing your visa with high success strategies</li>
+            </ul>
+            <button onclick="window.location.href='consulting.html'">Get Support</button>
+
+        </div>
+        </div>
+    </div>
+    </section>
+
+      <!--   Popular Visa  -->
+
+      <section class="popular-visa">
+      <div class="visa-header">
+        <h2>Popular Visa</h2>
+        <p>Mythos offers expert guidance and support that increases your chances of visa success.</p>
+        <p class="swipe-hint">← Swipe to see more</p>
+      </div>
+
+      <div class="visa-scroll-wrapper">
+        <div class="visa-layout">
+          <div class="visa-card">
+            <img src="images/uk.jpg" alt="UK Flag" />
+          </div>
+          <div class="visa-card">
+            <img src="images/ir.jpg" alt="Ireland Flag" />
+          </div>
+          <div class="visa-card">
+            <img src="images/ne.jpg" alt="Netherlands Flag" />
+          </div>
+          <div class="visa-card">
+            <img src="images/ge.jpg" alt="Germany Flag" />
+          </div>
+          <div class="visa-card">
+            <img src="images/sp.jpg" alt="Spain Flag" />
+          </div>
+          <div class="visa-card">
+            <img src="images/la.jpg" alt="Latvia Flag" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    
+    
+    <!-- Requirements -->
+    <section class="requirements-section">
+      <h2>Work Visa Requirements</h2>
+      <p>
+        To obtain a Work Visa, you must possess the requisite talents in demand in a certain country. You should also possess the requisite educational credentials and certifications for the position. You should also have the required work experience for the position.
+      </p>
+      <ul>
+        <li><b>Job Offer:</b> Typically, you need a confirmed job offer or employment contract from an employer in the destination country. Some visas require the employer to demonstrate they cannot fill the role with a local candidate.</li>
+        <li><b>Relevant Qualifications:</b> You should possess the necessary qualifications, certifications, or skills pertinent to the job role. Some countries may require validation or recognition of foreign qualifications.</li>
+        <li><b>Application Documentation:</b> This can include a completed visa application form, passport-sized photos, a valid passport, and any other documents stipulated by the immigration authorities.</li>
+        <li><b>Language Proficiency:</b> In some countries, you may also be required to take a Language Proficiency Test. This is especially true in English-speaking nations, where you may be required to take an English test such as the IELTS before applying for a Work Visa.</li>
+        <li><b>Health and Character Assessment:</b> Some countries require medical examinations or police clearances to ensure you don't pose a health or security risk.</li>
+        <li><b>Visa Application Fee:</b> Each country has a specific fee for processing the work visa application. Some might also have additional fees for biometric services or other administrative costs.</li>
+      </ul>
+    </section>
+
+  <!--FAQ -->
+
+    <section class="faq-container">
+      <h2 class="faq-heading">Frequently Asked Questions</h2>
+
+      <div class="accordion-item">
+        <button class="accordion-btn">What documents are required for a work visa?<span class="icon">+</span></button>
+        <div class="accordion-content">
+          <p>Documents usually include a valid passport, job offer letter, completed visa application form, photos, and proof of qualifications.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn">Is IELTS mandatory for a work visa?<span class="icon">+</span></button>
+        <div class="accordion-content">
+          <p>Many English-speaking countries require proof of language proficiency such as IELTS or similar English tests.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn">How long does it take to process a work visa?<span class="icon">+</span></button>
+        <div class="accordion-content">
+          <p>Processing time varies by country and visa type. It typically ranges from a few weeks to a few months.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn">Can I switch jobs on a work visa?<span class="icon">+</span></button>
+        <div class="accordion-content">
+          <p>In many countries, switching employers may require notifying immigration authorities or applying for a new visa.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn">Can my family accompany me on a work visa?<span class="icon">+</span></button>
+        <div class="accordion-content">
+          <p>Yes, most countries allow dependents to accompany you on a work visa, though some may require separate applications.</p>
+        </div>
+      </div>
+    </section>
+
+
+      <!-- Reusable Modals -->
+    <div id="signup-modal-placeholder" data-include="partials/signup-modal.html"></div>
+    <div id="login-modal-placeholder" data-include="partials/login-modal.html"></div>
+    <div id="footer-placeholder" data-include="partials/footer.html"></div>
+
+    <script>
+          document.querySelectorAll('.accordion-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+            const isOpen = btn.classList.contains('active');
+            document.querySelectorAll('.accordion-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+
+            if (!isOpen) {
+              btn.classList.add('active');
+              btn.nextElementSibling.style.display = 'block';
+            }
+          });
+        });
+
+    </script>
+
+<!-- AJAX Script -->
+<script>
+document.getElementById('workForm').addEventListener('submit', function(e) {
+  e.preventDefault(); // Prevent default form submission
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  fetch("https://formsubmit.co/ajax/queries@mythosconsulting.org", {
+    method: "POST",
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      document.getElementById("successPopup").style.display = "block";
+      form.reset(); // Clear the form
+    } else {
+      alert("Submission failed. Please try again.");
+    }
+  })
+  .catch(error => {
+    alert("Something went wrong!");
+    console.error(error);
+  });
+});
+</script>
+
+
+
+    
+</body>
+</html>
