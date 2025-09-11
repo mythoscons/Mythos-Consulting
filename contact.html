@@ -146,7 +146,7 @@
     }
 
     .contact-info a {
-      color: #007bff;
+      color: inherit;
       text-decoration: none;
     }
 
@@ -356,6 +356,263 @@ input, select {
   </div>
 
 
+<!-- =====================  APPOINTMENT SECTION  ===================== -->
+
+<!-- =====================  APPOINTMENT (Email only)  ===================== -->
+<section class="container-1100">
+  <div class="appt-card">
+    <!-- Left: picker -->
+    <div class="appt-left">
+      <h2 class="appt-title">Book an Appointment</h2>
+      <p class="appt-sub">We take appointments on <strong>Tuesday</strong> and <strong>Wednesday</strong> </p>
+
+      <div class="picker">
+        <label class="picker-label" for="apptDate">Choose a date</label>
+        <select id="apptDate" class="picker-input"></select>
+      </div>
+
+      <div class="picker">
+        <label class="picker-label">Select a time</label>
+        <div id="timeGrid" class="time-grid"><!-- buttons inserted by JS --></div>
+      </div>
+      <p id="selectedText" class="selected-text">Selected: —</p>
+    </div>
+
+    <!-- Right: form -->
+    <div class="appt-right">
+      <h3 class="form-title">Tell us a bit about you</h3>
+
+      <form id="apptForm" novalidate>
+        <div class="form-row">
+          <input type="text" name="from_name" id="fullName" placeholder="Your Full Name*" required />
+        </div>
+
+        <div class="form-row">
+          <input type="email" name="reply_to" id="email" placeholder="Email Address*" required />
+        </div>
+
+        <div class="form-row two-col">
+          <input type="tel" name="phone" id="phone" placeholder="Phone Number (optional)" />
+          <input type="text" id="chosenSlot" name="chosen_slot" placeholder="Appointment (auto-filled)" readonly />
+        </div>
+
+        <div class="form-row">
+          <textarea name="query" id="query" rows="4" placeholder="Your Query (optional)"></textarea>
+        </div>
+
+        <div class="terms-row">
+          <label class="checkbox">
+            <input type="checkbox" id="terms" required />
+            <span>I accept the <a href="#">Terms &amp; Conditions</a></span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary">Confirm Appointment</button>
+        <div id="formMsg" class="form-msg" aria-live="polite" role="status" style="display:none;"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===============  STYLES  =============== -->
+<style>
+  .container-1100{max-width:1100px;margin:40px auto;padding:0 16px}
+  .appt-card{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;background:#fff;border:1px solid #e6e6e6;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.06);padding:28px}
+  .appt-left,.appt-right{display:flex;flex-direction:column}
+  .appt-title{font-size:26px;margin:0 0 6px}
+  .appt-sub{margin:0 0 16px;color:#555}
+  .picker{margin-bottom:18px}
+  .picker-label{display:block;font-weight:600;margin-bottom:6px}
+  .picker-input{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:14px;background:#fff}
+  .time-grid{display:grid;grid-template-columns:repeat(4,minmax(90px,1fr));gap:10px}
+  .time-btn{border:1px solid #ccc;background:#fff;border-radius:8px;padding:10px 8px;font-size:14px;cursor:pointer;transition:box-shadow .2s,border-color .2s,opacity .2s}
+  .time-btn:hover{box-shadow:0 4px 10px rgba(0,0,0,.07);border-color:#bbb}
+  .time-btn.active{border-color:#111;box-shadow:0 0 0 2px #111 inset}
+  .time-btn.is-taken,.time-btn[disabled]{opacity:.45;cursor:not-allowed}
+  .slots-note{font-size:13px;color:#666;margin-top:10px}
+  .selected-text{font-size:13px;color:#333;margin-top:6px}
+  .form-title{margin:0 0 10px}
+  .form-row{margin-bottom:14px}
+  .form-row input,.form-row textarea{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:14px;box-sizing:border-box}
+  .form-row.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .terms-row{margin:10px 0 14px}
+  .checkbox{display:inline-flex;gap:8px;align-items:center;font-size:14px;color:#333}
+  .checkbox input{width:16px;height:16px;margin:0}
+  .checkbox a{color:#0077cc;text-decoration:none}
+  .checkbox a:hover{text-decoration:underline}
+  .btn-primary{background:#e6391f;color:#fff;border:0;padding:12px 18px;border-radius:8px;font-weight:600;cursor:pointer;width:100%}
+  .btn-primary:hover{background:#c7311a}
+  .form-msg{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:14px}
+  .form-msg.ok{background:#e7f6ec;color:#1e7e34;border:1px solid #b7e2c2}
+  .form-msg.err{background:#fdecea;color:#b02a37;border:1px solid #f5c2c7}
+  .hint{font-size:12px;color:#777;margin-top:8px}
+  @media (max-width:900px){.appt-card{grid-template-columns:1fr;padding:20px}.time-grid{grid-template-columns:repeat(2,minmax(120px,1fr))}.form-row.two-col{grid-template-columns:1fr}}
+</style>
+
+<!-- ===============  LOGIC (EmailJS + local lock)  =============== -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  /* ===== EmailJS setup ===== */
+  const EMAILJS_PUBLIC_KEY        = '0H1LnoJPG8Gvyw3GL';
+  const EMAILJS_SERVICE_ID        = 'service_jylvx24';
+  const EMAILJS_TEMPLATE_TO_OWNER = 'template_apztnb9';
+  const EMAILJS_TEMPLATE_TO_USER  = 'template_xssjtmk';
+
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  /* ===== MockAPI endpoint ===== */
+  const API_URL = "https://68c2e738f9928dbf33f022a6.mockapi.io/api/appointments/bookings";
+
+  /* ===== DOM elements ===== */
+  const apptDateSelect = document.getElementById('apptDate');
+  const timeGrid       = document.getElementById('timeGrid');
+  const chosenSlot     = document.getElementById('chosenSlot');
+  const selectedText   = document.getElementById('selectedText');
+  const formMsg        = document.getElementById('formMsg');
+  const apptForm       = document.getElementById('apptForm');
+
+  /* ===== Fixed slots ===== */
+  const SLOTS = ['14:00','14:30','15:00','15:30'];
+
+  const displayTime = (t) => {
+    const [h,m] = t.split(':').map(Number);
+    const d = new Date(); d.setHours(h,m,0,0);
+    return d.toLocaleTimeString([], { hour:'numeric', minute:'2-digit' });
+  };
+  const isTueOrWed = (d) => [2,3].includes(d.getDay());
+  const isoDate = (d) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  const prettyDate = (d) => d.toLocaleDateString([], { weekday:'long', month:'short', day:'numeric', year:'numeric' });
+
+  /* ===== Build next 6 weeks of Tue/Wed ===== */
+  (function buildDates(){
+    const today = new Date(); today.setHours(0,0,0,0);
+    const cur = new Date(today); let count = 0;
+    while (count < 42) {
+      if (isTueOrWed(cur) && cur >= today) {
+        const opt = document.createElement('option');
+        opt.value = isoDate(cur);
+        opt.textContent = prettyDate(cur);
+        apptDateSelect.appendChild(opt);
+      }
+      cur.setDate(cur.getDate()+1);
+      count++;
+    }
+  })();
+
+  /* ===== Build time buttons ===== */
+  function buildTimeButtons(disabledTimes = []){
+    timeGrid.innerHTML = '';
+    SLOTS.forEach(t => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'time-btn';
+      btn.dataset.time = t;
+      btn.textContent = displayTime(t);
+
+      if (disabledTimes.includes(t)) {
+        btn.classList.add('is-taken');
+        btn.disabled = true;
+      }
+
+      btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        [...timeGrid.querySelectorAll('.time-btn')].forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const label = apptDateSelect.options[apptDateSelect.selectedIndex]?.text || '';
+        chosenSlot.value = label ? `${label} · ${btn.textContent}` : btn.textContent;
+        selectedText.textContent = `Selected: ${chosenSlot.value}`;
+      });
+
+      timeGrid.appendChild(btn);
+    });
+  }
+
+  /* ===== Fetch taken slots from MockAPI ===== */
+  async function fetchTakenSlots(date){
+    const res = await fetch(`${API_URL}?date=${date}`);
+    return await res.json(); // [{date:'2025-09-16', time:'14:00', name:'...', email:'...'}]
+  }
+
+  /* ===== Refresh grid when date changes ===== */
+  async function refreshForSelectedDate(){
+    chosenSlot.value = '';
+    selectedText.textContent = 'Selected: —';
+    const dateISO = apptDateSelect.value;
+    if (!dateISO){ buildTimeButtons(); return; }
+
+    try{
+      const bookings = await fetchTakenSlots(dateISO);
+      const disabled = bookings.map(b => b.time);
+      buildTimeButtons(disabled);
+    }catch(err){
+      console.error(err);
+      buildTimeButtons([]);
+    }
+  }
+
+  apptDateSelect.addEventListener('change', refreshForSelectedDate);
+
+  /* ===== Save booking ===== */
+  async function saveBooking(data){
+    const res = await fetch(API_URL, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify(data)
+    });
+    return await res.json();
+  }
+
+  /* ===== Handle form submit ===== */
+  apptForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formMsg.style.display = 'none';
+    formMsg.className = 'form-msg';
+
+    if (!apptForm.reportValidity()) return;
+
+    const activeBtn = timeGrid.querySelector('.time-btn.active');
+    const dateISO   = apptDateSelect.value;
+    const dateLabel = apptDateSelect.options[apptDateSelect.selectedIndex]?.text || '';
+    const time24    = activeBtn ? activeBtn.dataset.time : '';
+    const timeLabel = activeBtn ? activeBtn.textContent : '';
+
+    if (!dateISO || !time24){
+      formMsg.textContent = 'Please select a date and a time slot.';
+      formMsg.classList.add('err'); formMsg.style.display = 'block';
+      return;
+    }
+
+    // Booking data
+    const data = Object.fromEntries(new FormData(apptForm).entries());
+    data.date = dateISO;
+    data.time = time24;
+    data.appt_date = dateLabel;
+    data.appt_time = timeLabel;
+
+    try{
+      // 1) Save to MockAPI
+      await saveBooking(data);
+
+      // 2) Send emails
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_TO_OWNER, data);
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_TO_USER , data);
+
+      formMsg.textContent = `✅ Thank you! Your appointment for ${data.appt_date} · ${data.appt_time} has been received.`;
+      formMsg.classList.add('ok'); formMsg.style.display = 'block';
+
+      apptForm.reset();
+      await refreshForSelectedDate(); // disable slot
+    }catch(err){
+      console.error(err);
+      formMsg.textContent = `❌ ${err.message || 'Could not book now. Please try again.'}`;
+      formMsg.classList.add('err'); formMsg.style.display = 'block';
+    }
+  });
+
+  // Initial build
+  refreshForSelectedDate();
+</script>
+
   <!-- Contact Info + Map + FAQ -->
   <div class="contact-extras">     
 
@@ -364,23 +621,21 @@ input, select {
             <h3>Find Us On Google Maps</h3>
           </div>
         
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.697975317288!2d0.06762397696595493!3d51.537099208533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a64018598a85%3A0x862d1ea4bd114d3f!2sRegus%20-%20Barking%2C%20Jhumat%20House!5e0!3m2!1sen!2suk!4v1747071191877!5m2!1sen!2suk" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.6774687482834!2d-0.0005082999999999999!3d51.5374753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761d6018c60b75%3A0x1ee815c16c97afde!2sBurford%20Business%20Centre%2C%2011%20Burford%20Rd%2C%20London%20E15%202ST!5e0!3m2!1sen!2suk!4v1757601155616!5m2!1sen!2suk" 
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>
     
     <section class="contact-info">
-        <h3>Contact Information</h3>
-        <ul>
-          <li><strong>Phone:</strong> <a href="tel:+447352311825">+44 735 231 1825</a></li>
-          <li><strong>WhatsApp:</strong> <a href="https://wa.me/447352311825" target="_blank">+44 735 231 1825</li>
-          <li><strong>Email:</strong> <a href="mailto:queries@mythosconsulting.org">queries@mythosconsulting.org</a></li>
-          <li><strong>Address:</strong> Regus, Jhumat House, 160 London Road, Barking IG11 8BB, UK</li>
-          <li><strong>Working Hours:</strong> Monday–Friday: 9:00 AM – 6:00 PM</li>
-        </ul>
-    </section>
+      <h3>Contact Information</h3>
+      <ul>
+        <li><strong>Phone:</strong> <a href="tel:+447468647065">+44 746 864 7065</a></li>
+        <li><strong>WhatsApp:</strong> <a href="https://wa.me/447468647065" target="_blank">+44 746 864 7065</a></li>
+        <li><strong>Email:</strong> <a href="mailto:queries@mythosconsulting.org" class="no-link">queries@mythosconsulting.org</a></li>
+        <li><strong>Address:</strong> 11 Burford Rd, London E15 2ST</li>
+        <li><strong>Working Hours:</strong> Monday–Friday 10:00 AM – 6:00 PM</li>
+      </ul>
+</section>
 
     <section class="faq-section">
         <h3>Frequently Asked Questions</h3>
